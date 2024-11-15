@@ -1,0 +1,108 @@
+version: '3.9'
+
+services:
+  router1:
+    build:
+      context: .
+      dockerfile: Dockerfile.router
+    container_name: router1
+    privileged: true
+    networks:
+      linknet1:
+        ipv4_address: 10.10.0.2
+      subnet_192_168_40:
+        ipv4_address: 192.168.40.3
+    volumes:
+      - ./configs/router1/frr.conf:/etc/frr/frr.conf
+
+  router2:
+    build:
+      context: .
+      dockerfile: Dockerfile.router
+    container_name: router2
+    privileged: true
+    networks:
+      linknet1:
+        ipv4_address: 10.10.0.3
+      linknet2:
+        ipv4_address: 11.11.0.2
+      subnet_192_168_50:
+        ipv4_address: 192.168.50.3
+    volumes:
+      - ./configs/router2/frr.conf:/etc/frr/frr.conf
+
+  router3:
+    build:
+      context: .
+      dockerfile: Dockerfile.router
+    container_name: router3
+    privileged: true
+    networks:
+      linknet2:
+        ipv4_address: 11.11.0.3
+      subnet_192_168_60:
+        ipv4_address: 192.168.60.3
+    volumes:
+      - ./configs/router3/frr.conf:/etc/frr/frr.conf
+
+  ubuntu1:
+    build:
+      context: .
+      dockerfile: Dockerfile.ubuntu1
+    container_name: ubuntu1
+    privileged: true
+    networks:
+      subnet_192_168_40:
+        ipv4_address: 192.168.40.2
+    depends_on:
+      - router1
+
+  ubuntu2:
+    build:
+      context: .
+      dockerfile: Dockerfile.ubuntu2
+    container_name: ubuntu2
+    privileged: true
+    networks:
+      subnet_192_168_50:
+        ipv4_address: 192.168.50.2
+    depends_on:
+      - router2
+
+  ubuntu3:
+    build:
+      context: .
+      dockerfile: Dockerfile.ubuntu3
+    container_name: ubuntu3
+    privileged: true
+    networks:
+      subnet_192_168_60:
+        ipv4_address: 192.168.60.2
+    depends_on:
+      - router3
+networks:
+  linknet1:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.10.0.0/16 #router1, 2
+  linknet2:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 11.11.0.0/16 #roter2, 3
+  subnet_192_168_40:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.40.0/24
+  subnet_192_168_50:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.50.0/24
+  subnet_192_168_60:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.60.0/24

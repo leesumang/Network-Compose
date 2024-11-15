@@ -1,0 +1,27 @@
+# 베이스 이미지로 우분투 사용
+FROM ubuntu:latest
+
+# 필수 패키지 설치
+RUN apt-get update && apt-get install -y \
+    iproute2 \
+    iputils-ping \
+    traceroute \
+    tcpdump \
+    curl \
+    wget \
+    dnsutils \
+    nmap \
+    nano \
+    iptables \
+    psmisc \
+    net-tools \
+    --no-install-recommends && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# 게이트웨이 설정 스크립트 추가
+RUN printf '#!/bin/bash\nip route del default || true\nip route add default via 192.168.50.3 || exit 1\ntail -f /dev/null\n' > /usr/local/bin/set-gateway && \
+    chmod +x /usr/local/bin/set-gateway
+
+# 기본 명령어로 게이트웨이 설정 스크립트 실행
+CMD ["/bin/bash", "/usr/local/bin/set-gateway"]

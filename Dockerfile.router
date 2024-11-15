@@ -1,0 +1,15 @@
+FROM frrouting/frr:latest
+
+# vtysh.conf 파일 생성 및 권한 설정
+RUN echo 'service integrated-vtysh-config' > /etc/frr/vtysh.conf && \
+    chmod 644 /etc/frr/vtysh.conf
+
+# FRR 데몬 설정 파일 수정: bgpd, ospfd 활성화
+RUN sed -i 's/bgpd=no/bgpd=yes/' /etc/frr/daemons && \
+    sed -i 's/ospfd=no/ospfd=yes/' /etc/frr/daemons
+
+# FRR 설정 파일 복사 (라우터별로 다르게 마운트)
+COPY configs/router1/frr.conf /etc/frr/frr.conf
+
+# FRR 데몬 시작
+CMD ["/bin/sh", "-c", "/usr/lib/frr/frrinit.sh start && tail -f /dev/null"]
