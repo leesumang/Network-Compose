@@ -15,6 +15,7 @@
   - `192.168.60.0/24`: Router3 ↔ Ubuntu3
   
 ## 네트워크 다이어그램
+![network_compose drawio](https://github.com/user-attachments/assets/fd09047a-a930-4819-b2f1-c8b7581ca57f)
 
 
 
