@@ -46,6 +46,9 @@
 2. **Docker Compose 실행**:
    ```bash
    docker-compose up --build
+
+   # -d 를 사용하면 백그라운드에서 돌아갑니다 -> 이후 명령어 사용하는 게 편합니다.
+   docker-compose up --build -d 
 3. **테스트 방법**:
    ```bash
     # Ubuntu -> router 통신 확인
