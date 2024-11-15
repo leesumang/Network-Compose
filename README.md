@@ -91,6 +91,7 @@
    # Ubutnu3 -> Ubuntu3 까지의 경로
    docker exec -it ubuntu3 traceroute 192.168.40.2 
    ```
+- `docker-compose down --rmi all --volumes --remove-orphans` 를 사용하면 사용한 리소스가 모두 정리되고 제거됩니다.
 ---
 
 ## 🗺️디렉터리 구조
