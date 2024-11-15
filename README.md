@@ -32,7 +32,7 @@
 ## 📦 요구 사항
 - **Docker**: v20.10 이상
 - **Docker Compose**: v1.29 이상
-- **Docker Compose**(v1.29 이상)
+- **Docker Desktop** (Windows/Mac)
 ### **Docker Desktop 없이 가능한 환경**
 - **Linux 사용자**는 Docker Desktop 없이도 CLI로 Docker와 Compose를 설치해 사용할 수 있습니다.
 - Windows나 Mac에서도 **WSL2 (Windows Subsystem for Linux)**나 **Podman** 등을 사용할 수 있지만, 설정이 복잡할 수 있으므로 Docker Desktop이 추천됩니다.
