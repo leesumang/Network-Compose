@@ -1,7 +1,7 @@
 # SuminNetCompose 🐱
 
 ## 📜 프로젝트 개요
-이 프로젝트는 Docker Compose와 FRRouting을 사용하여 OSPF 라우팅 기반의 네트워크 환경을 자동으로 구성하는 스터디 목적으로 만들어졌습니다.
+이 프로젝트는 Docker Compose와 FRRouting을 사용하여 OSPF 라우팅 기반의 네트워크 환경구성하는 도중 간편하게 딸깍하면 만들어지는 자동화 환경을 구성하고 싶어서 진행하게 되었습니다.
 
 ---
 
@@ -32,7 +32,10 @@
 ## 📦 요구 사항
 - **Docker**: v20.10 이상
 - **Docker Compose**: v1.29 이상
-
+- **Docker Compose**(v1.29 이상)
+### **Docker Desktop 없이 가능한 환경**
+- **Linux 사용자**는 Docker Desktop 없이도 CLI로 Docker와 Compose를 설치해 사용할 수 있습니다.
+- Windows나 Mac에서도 **WSL2 (Windows Subsystem for Linux)**나 **Podman** 등을 사용할 수 있지만, 설정이 복잡할 수 있으므로 Docker Desktop이 추천됩니다.
 ---
 
 ## 🚀 설치 및 실행
