@@ -1,4 +1,4 @@
-# SuminNetCompose 🐱
+# Network-Compose 🐱
 
 ## 📜 프로젝트 개요
 이 프로젝트는 Docker Compose와 FRRouting을 사용하여 OSPF 라우팅 기반의 네트워크 환경을 구성하기 위해 진행되었습니다. 특히, **간편하게 클릭 한 번으로 생성**되는 자동화된 환경을 목표로 개발하였습니다.
